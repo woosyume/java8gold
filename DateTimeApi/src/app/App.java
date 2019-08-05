@@ -1,7 +1,10 @@
 package app;
 
 import java.time.DayOfWeek;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Month;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -39,5 +42,37 @@ public class App {
         System.out.println("*************************");
 
         ZoneId zone1 = ZoneId.of("Asia/Tokyo");
+        ZoneId zone2 = ZoneId.of("America/Los_Angeles");
+        LocalDate date1 = LocalDate.of(2017, 2, 1);
+        LocalDate date2 = LocalDate.of(2017, 4, 1);
+        LocalTime time = LocalTime.of(0, 00);
+
+        ZonedDateTime zdt1 = ZonedDateTime.of(date1, time, zone1);
+        ZonedDateTime zdt2 = ZonedDateTime.of(date1, time, zone2);
+
+        System.out.println("zdt1=" + zdt1);
+        System.out.println("zdt2=" + zdt2);
+        // zdt1=2017-02-01T00:00+09:00[Asia/Tokyo]
+        // zdt2=2017-02-01T00:00-08:00[America/Los_Angeles] 
+
+        long hrs1 = ChronoUnit.HOURS.between(zdt2, zdt1);
+        System.out.println("Time difference between Tokyo and LA is " + hrs1 + "hours in " + zdt1.getMonth());
+
+        ZonedDateTime zdt3 = ZonedDateTime.of(date2, time, zone1);
+        ZonedDateTime zdt4 = ZonedDateTime.of(date2, time, zone2);
+
+        long hrs2 = ChronoUnit.HOURS.between(zdt4, zdt3);
+        System.out.println("Time difference between Tokyo and LA is " + hrs2 + "hours in " + zdt1.getMonth());
+
+        System.out.println("*************************");
+
+        // LocalTime time = LocalTime.of(0, 00);
+        LocalDate date = LocalDate.of(2017, 2, 1);
+        LocalDateTime dt = LocalDateTime.of(date, time);
+
+        ZonedDateTime zdt = dt.atZone(ZoneId.of("Asia/Tokyo"));
+        Instant instant = zdt.toInstant();
+        // Instant : 지정한 시점의 날짜 / 시각을 표현. 타임스탬프로서 쓰인다.
+        System.out.println(instant);
     }
 }

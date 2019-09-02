@@ -3,6 +3,7 @@ package app;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
 public class App {
@@ -29,6 +30,9 @@ public class App {
 
         System.out.println("************************");
 
+        Function<String, Integer> f = t -> t.length();
+        Function<String, Integer> f1 = String::length;
         
+        System.out.println(f.apply("Hello"));
     }
 }

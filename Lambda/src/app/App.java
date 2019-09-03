@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.ToIntFunction;
 import java.util.function.UnaryOperator;
 
 public class App {
@@ -34,5 +35,11 @@ public class App {
         Function<String, Integer> f1 = String::length;
         
         System.out.println(f.apply("Hello"));
+        System.out.println("************************");
+
+        String str = "I am a Java developer";
+        ToIntFunction<String> index = str::indexOf;
+        int x = index.applyAsInt("Java");
+        System.out.println(x);
     }
 }

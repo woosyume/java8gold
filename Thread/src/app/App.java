@@ -8,6 +8,17 @@ public class App {
         t1.start();
         t2.start();
         t2.run(); // 이걸 실행하니 'main'이라고 출력된다.
+
+        System.out.println("***************************");
+        try {
+            Runnable r = () -> System.out.print("run ");
+            Thread t = new Thread(r);
+            t.start();
+            t.join(); // 스레드가 종료할 때 까지 기다린다.
+            System.out.println("main ");
+        } catch (InterruptedException e) {
+            System.out.println("Exception");
+        }
     }
 }
 

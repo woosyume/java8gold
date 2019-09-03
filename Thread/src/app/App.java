@@ -15,17 +15,20 @@ public class App {
             Thread t = new Thread(r);
             t.start();
             t.join(); // 스레드가 종료할 때 까지 기다린다.
-            System.out.println("main ");
+            System.out.println("main "); // run main 출력됨.
         } catch (InterruptedException e) {
             System.out.println("Exception");
         }
+        System.out.println("***************************");
+
+        
     }
 }
 
 class InnerApp implements Runnable {
 
     @Override
-    public void run() {
+    synchronized public void run() {
         System.out.println(Thread.currentThread().getName());
     }
 }

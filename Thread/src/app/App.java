@@ -1,5 +1,8 @@
 package app;
 
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class App {
     public static void main(String[] args) throws Exception {
         Thread t1 = new Thread(new InnerApp(), "Thread1");
@@ -21,7 +24,18 @@ public class App {
         }
         System.out.println("***************************");
 
-        
+        ArrayList<AtomicInteger> list = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            System.out.println("set=" + new AtomicInteger());
+            list.add(new AtomicInteger());
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            AtomicInteger value = list.get(i);
+            value.incrementAndGet();
+            if ((i % 2) == 0) value.compareAndSet(1, 5);
+            System.out.println(value + " ");
+        }
     }
 }
 
@@ -32,3 +46,4 @@ class InnerApp implements Runnable {
         System.out.println(Thread.currentThread().getName());
     }
 }
+
